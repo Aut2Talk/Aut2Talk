@@ -21,6 +21,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\projects\Aut2Talk\android\app\build\intermediates\exploded-aar\com.yqritc\android-scalablevideoview\1.0.4\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4394e0421a1e2c0cb691a783a393c192a84697ab">
+        <dex dex="D:\projects\Aut2Talk\android\app\build\intermediates\pre-dexed\debug\com.yqritc-android-scalablevideoview-1.0.4_33005f8a2bbe43a86bd53f22c201d7f0780dbc06.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\Users\beaes\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
         jumboMode="false"
         optimize="true"
@@ -153,6 +162,15 @@
         revision="23.0.1"
         sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
         <dex dex="D:\projects\Aut2Talk\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.6.0_090215088f426b82dc9c600fc134b08a6f80cc5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\projects\Aut2Talk\android\app\build\intermediates\exploded-aar\Aut2Talk\react-native-video\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="33b9ae6aa89cca3401f4947d2b87f5bf9f3c465c">
+        <dex dex="D:\projects\Aut2Talk\android\app\build\intermediates\pre-dexed\debug\Aut2Talk-react-native-video-unspecified_5893c193cdeb0f51b66d7ff3585a8d642edc75d5.jar" />
     </item>
     <item
         is-multidex="false"
