@@ -1,0 +1,48 @@
+Arguments: 
+  D:\Program Files\nodejs\node.exe C:\Users\beaes\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\Python27\;C:\Python27\Scripts;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\Git\cmd;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\ProgramData\chocolatey\bin;D:\Program Files\nodejs\;D:\Users\beaes\AppData\Local\Android\sdk\platform-tools;C:\Users\beaes\AppData\Local\Microsoft\WindowsApps;D:\Program Files\Microsoft VS Code\bin;C:\Users\beaes\AppData\Roaming\npm
+
+Yarn version: 
+  0.27.5
+
+Node version: 
+  8.4.0
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "Aut2Talk",
+    "version": "0.1.0",
+    "private": true,
+    "devDependencies": {
+      "babel-preset-react-native-stage-0": "^1.0.1",
+      "jest-expo": "~20.0.0",
+      "react-test-renderer": "16.0.0-alpha.12"
+    },
+    "scripts": {
+      "start": "react-native start",
+      "android": "react-native run-android",
+      "ios": "react-native run-ios",
+      "test": "node node_modules/jest/bin/jest.js --watch"
+    },
+    "jest": {
+      "preset": "jest-expo"
+    },
+    "dependencies": {
+      "react": "16.0.0-alpha.12",
+      "react-native": "^0.47.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'D:\projects\Aut2Talk\node_modules\debug\src\browser.js'
