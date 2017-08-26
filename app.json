@@ -1,5 +1,7 @@
 {
   "expo": {
     "sdkVersion": "20.0.0"
-  }
+  },
+  "name": "Aut2TalkEjected",
+  "displayName": "Aut2Talk"
 }

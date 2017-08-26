@@ -1,0 +1,3 @@
+rootProject.name = 'Aut2TalkEjected'
+
+include ':app'
