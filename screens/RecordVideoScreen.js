@@ -91,7 +91,7 @@ export default class RecordVideoScreen extends Component {
 
             <View style = {{flex:1, flexDirection:'row', justifyContent:'flex-end'}}>
               <TouchableHighlight 
-                style={camBarStyles.toggle}
+                style={this.state.isRecording? camBarStyles.toggleOff:camBarStyles.toggle}
                 onPress={this.toggleCamera.bind(this)} 
               >
                 <Image 
@@ -133,6 +133,10 @@ const camBarStyles = StyleSheet.create({
     resizeMode : 'contain',
   },
 
+  toggleOff:{
+    display:'none',
+  },
+  
   toggle:{
     height: '40%',
     flexDirection:'column',
