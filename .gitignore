@@ -1,3 +1,91 @@
-node_modules/
-.expo/
-npm-debug.*
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @beaesguerra
+ Sign out
+ Watch 3,154
+  Star 52,642
+  Fork 12,347 facebook/react-native
+ Code  Issues 552  Pull requests 248  Projects 9  Wiki Insights 
+Branch: master Find file Copy pathreact-native/.gitignore
+56d4595  on Jul 18
+@hramos hramos Adds Danger support
+14 contributors @mkonicek @janicduplessis @vjeux @bestander @sahrens @nihgwu @lacker @ide @ianlevesque @hramos @enaqx @eddiemonge @spicyj @frantic
+RawBlameHistory     
+61 lines (53 sloc)  866 Bytes
+# Xcode
+!**/*.xcodeproj
+!**/*.pbxproj
+!**/*.xcworkspacedata
+!**/*.xcsettings
+!**/*.xcscheme
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# Gradle
+/build/
+/RNTester/android/app/build/
+/RNTester/android/app/gradle/
+/RNTester/android/app/gradlew
+/RNTester/android/app/gradlew.bat
+/ReactAndroid/build/
+
+# Buck
+.buckd
+buck-out
+/ReactAndroid/src/main/jni/prebuilt/lib/armeabi-v7a/
+/ReactAndroid/src/main/jni/prebuilt/lib/x86/
+/ReactAndroid/src/main/gen
+
+# Android
+.idea
+.gradle
+local.properties
+*.iml
+/android/
+
+# Node
+node_modules
+*.log
+.nvm
+/danger/node_modules/
+
+# OS X
+.DS_Store
+
+# Test generated files
+/ReactAndroid/src/androidTest/assets/AndroidTestBundle.js
+*.js.meta
+
+/coverage
+/third-party
+© 2017 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
