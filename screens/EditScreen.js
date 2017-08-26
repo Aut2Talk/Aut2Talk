@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import {Text, StyleSheet, View, TextInput, Button } from 'react-native';
+import {Text, StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 
 export default class EditScreen extends Component {
     static navigationOption = {
       title: 'Add',
     };
 
+    _onPressButton (data) {
+        Alert.alert('clicked button')
+    }
+
     constructor(props) {
         super(props);
         this.state = {
-          Text_1: "Please Enter Emotion/Activity:",
-          Text_2: "Please Choose Image:",
-          Text_3: "Please take video:",
-          text: '',
+          Text_1: "Please enter emotion/activity:",
+          Text_2: "Please choose an image:",
+          Text_3: "Please take a video:",
+          title: '',
           emoji: '',
         }
     }
@@ -21,42 +25,37 @@ export default class EditScreen extends Component {
       const { navigate } = this.props.navigation;
       return (
         <View style = {styles.container}>
-          <Text style = {styles.baseText}>
-            <Text>{this.state.Text_1}</Text>
-          </Text>
+          <Text style = {styles.baseText}>{this.state.Text_1}</Text>
 
           <TextInput
-            style={{height: 80, width: 640, fontSize:40, backgroundColor: '#ffffff' }}
-            placeholder="Type here!"
-            onChangeText={(text) => this.setState({text})}
+            style={styles.textInput}
+            placeholder="Emotion/Activity Name"
+            onChangeText={(title) => this.setState({title})}
           />
           
-          <Text style = {styles.baseText}>
-            <Text>{this.state.Text_2}</Text>
-          </Text>
+          <Text style = {styles.baseText}>{this.state.Text_2}</Text>
 
           <TextInput
-            style={{height: 80, width: 640, fontSize:40, backgroundColor: '#ffffff' }}
-            placeholder="Choose Emoji!"
-            onChangeText={(text_1) => this.setState({text_1})}
+            style={styles.textInput}
+            placeholder="Emoji"
+            onChangeText={(emoji) => this.setState({emoji})}
           />
 
 
-          <Text style = {styles.baseText}>
-            <Text>{this.state.Text_3}</Text>
-          </Text>
+          <Text style = {styles.baseText}>{this.state.Text_3}</Text>
 
-          <Button
-            onPress = {this.onPressLearnMore}
-            title = "Enter"
-            color = "#ffffff"
+          <TextInput
+            style={styles.textInput}
+            placeholder="Video"
+            onChangeText={(video) => this.setState({video})}
           />
+          <View style={styles.button}>
+            <Button
+              onPress = {this._onPressButton}
+              title = "Enter"
+            />
+          </View>
 
-          <Button
-            onPress = {this.onPressLearnMore}
-            title = "Cancel"
-            color = "#ffffff"
-          />
         </View>
       );
     }
@@ -67,13 +66,41 @@ export default class EditScreen extends Component {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    marginTop: 30,
-    backgroundColor: '#AAAAAA',
   },
 
   baseText: {
-    color: '#0000ff',
-    fontWeight: 'bold',
-    fontSize: 25,
+    marginTop:15,
+    marginBottom:8,
+    marginHorizontal:8,
+    fontSize: 16,
+    color: '#444',
   },
+
+  textInput:{
+    height: 45, 
+    width: '100%', 
+
+    borderTopWidth: 1,//StyleSheet.hairlineWidth, 
+    borderBottomWidth: 1,//StyleSheet.hairlineWidth, 
+    borderColor: '#ddd',
+
+    paddingLeft:10,
+    fontSize:16, 
+    backgroundColor: '#ffffff' 
+  },
+
+  button:{
+    height: 45, 
+    width: '100%', 
+
+    borderTopWidth: 1,//StyleSheet.hairlineWidth, 
+    borderBottomWidth: 1,//StyleSheet.hairlineWidth, 
+    borderColor: '#ddd',
+
+    marginTop:20,
+    paddingLeft:10,
+    fontSize:16, 
+    backgroundColor: '#ffffff' 
+  },
+
 });
