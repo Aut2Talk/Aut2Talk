@@ -43,11 +43,9 @@ export default class EditScreen extends Component {
 
 
           <Text style = {styles.baseText}>{this.state.Text_3}</Text>
-
-          <TextInput
-            style={styles.textInput}
-            placeholder="Video"
-            onChangeText={(video) => this.setState({video})}
+          <Button 
+            onPress= {() => {navigate('RecordVideo')}}
+            title = 'Record Video'
           />
           <View style={styles.button}>
             <Button

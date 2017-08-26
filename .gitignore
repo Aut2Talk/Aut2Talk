@@ -58,20 +58,7 @@ node_modules
 
 /coverage
 /third-party
-<<<<<<< HEAD
-© 2017 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
-=======
 .expo/
 npm-debug.*
->>>>>>> master
+package-lock.json
+yarn.lock
