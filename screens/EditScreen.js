@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Text, StyleSheet, View, TextInput, Button, Alert } from 'react-native';
+import Video from 'react-native-video';
 
 export default class EditScreen extends Component {
     static navigationOption = {
@@ -20,6 +21,18 @@ export default class EditScreen extends Component {
       const { navigate } = this.props.navigation;
       return (
         <View style = {styles.container}>
+          <Video
+            source={require('../myVideo.mp4')}   // Can be a URL or a local file.
+            // Store reference
+            rate={1.0}
+            resizeMode="contain"                       // 0 is paused, 1 is normal.
+            volume={1.0}                            // 0 is muted, 1 is normal.
+            muted={false}                           // Mutes the audio entirely.
+            paused={false}                          // Pauses playback entirely.
+            repeat={true}                           // Repeat forever.
+            playInBackground={false}                // Audio continues to play when app entering background.
+            style={styles.backgroundVideo}
+          />
           <Text style = {styles.baseText}>{this.state.Text_1}</Text>
 
           <TextInput
@@ -95,6 +108,14 @@ const styles = StyleSheet.create({
     marginTop:20,
     paddingLeft:10,
     backgroundColor: '#ffffff' 
+  },
+
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 
 });
