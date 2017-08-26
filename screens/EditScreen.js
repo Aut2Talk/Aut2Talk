@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 import Video from 'react-native-video';
 
 export default class EditScreen extends Component {
+<<<<<<< HEAD
   static navigationOption = {
     title: 'Add',
   };
@@ -19,6 +20,20 @@ export default class EditScreen extends Component {
       Text_3: "Please take a video:",
       title: '',
       emoji: '',
+=======
+    static navigationOption = {
+      title: 'Add',
+    };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          Text_1: "Please enter emotion/activity:",
+          Text_2: "Please choose an emoji to describe it:",
+          title: '',
+          emoji: '',
+        }
+>>>>>>> MainFrontEnd
     }
   }
 
@@ -62,8 +77,8 @@ export default class EditScreen extends Component {
           />
           <View style={styles.button}>
             <Button
-              onPress = {this._onPressButton}
-              title = "Enter"
+              onPress={() => navigate('Home')}
+              title = "Confirm"
             />
           </View>
 
@@ -108,6 +123,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,//StyleSheet.hairlineWidth, 
     borderColor: '#ddd',
 
+<<<<<<< HEAD
     marginTop: 20,
     paddingLeft: 10,
     fontSize: 16,
@@ -119,6 +135,11 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
+=======
+    marginTop:20,
+    paddingLeft:10,
+    backgroundColor: '#ffffff' 
+>>>>>>> MainFrontEnd
   },
 
 });

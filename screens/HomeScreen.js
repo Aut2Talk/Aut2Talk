@@ -2,37 +2,39 @@ import React, {
   Component,
 } from 'react'
 import {
-  ScrollView,
+  Alert,
   StyleSheet,
+  ScrollView,
   View,
   Image,
   Text,
-  TouchableHighlight,
-  Alert,
+  TouchableHighlight
 } from 'react-native'
  
 import SudokuGrid from 'react-native-smart-sudoku-grid'
-import { StackNavigator} from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
+
+import {scale, verticalScale, moderateScale} from './Scale'
 
 
-import image_cash from './img/BlueIcon.png'
+import bgPic from './img/BlueIcon.png'
 
 const dataList = [
   {
-    icon: image_cash,
-    title: 'cash',
+    text: 'happy',
+    emoji: '😄',
   },
   {
-    icon: image_cash,
-    title: 'credit',
+    text: 'cute',
+    emoji: '😊',
   },
   {
-    icon: image_cash,
-    title: 'cash',
+    text: 'love',
+    emoji: '😍',
   },
   {
-    icon: image_cash,
-    title: 'credit',
+    text: 'confused',
+    emoji: '😣',
   },
 ]
  
@@ -60,15 +62,15 @@ export default class HomeScreen extends Component {
             </ScrollView>
 
             <Image style={toolbarStyles.toolbar} source={require('./img/Toolbar.png')}>
-              <TouchableHighlight onPress={() => navigate('Edit')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Edit.png')} /> 
               </TouchableHighlight>
               
-              <TouchableHighlight onPress={() => navigate('Edit')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Add.png')} /> 
               </TouchableHighlight>
 
-              <TouchableHighlight onPress={() => navigate('Edit')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Delete.png')} />  
               </TouchableHighlight> 
              </Image>
@@ -81,19 +83,17 @@ export default class HomeScreen extends Component {
         return (
             <TouchableHighlight style={gridStyles.button} underlayColor={'#eee'} onPress={ this._onPressCell.bind(this, data) } >
                 <View style={gridStyles.buttonView}>
-                  <Image style = {gridStyles.buttonImage} source={data.icon} /> 
-                  <Text style = {gridStyles.buttonText} >{data.title}</Text>
+                  <Image style = {gridStyles.buttonImage} source={bgPic} >
+                    <Text style = {gridStyles.buttonEmoji}>{data.emoji}</Text>
+                  </Image>
+                  <Text style = {gridStyles.buttonText} >{data.text}</Text>
                 </View>
             </TouchableHighlight>
         )
     }
  
     _onPressCell (data) {
-        Alert.alert('clicked ' + data.title)
-    }
-
-    _onPressAdd() {
-        navigate('Edit')
+        Alert.alert('clicked ' + data.text)
     }
  
 }
@@ -135,15 +135,21 @@ const gridStyles = StyleSheet.create({
 
   buttonImage:{
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     aspectRatio: 1,
     resizeMode : 'contain',
     // backgroundColor: 'blue',
   },
 
+  buttonEmoji:{
+    fontSize:scale(50),
+  },
+
   buttonText:{
     color: '#2196F3',
-    fontSize: 16,
+    fontSize: 14,
     margin: 5,
     // backgroundColor: 'yellow',
   }

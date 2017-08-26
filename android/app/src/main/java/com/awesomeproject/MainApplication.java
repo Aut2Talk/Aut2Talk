@@ -1,4 +1,4 @@
-package com.aut2talkejected;
+package com.awesomeproject;
 
 import android.app.Application;
 

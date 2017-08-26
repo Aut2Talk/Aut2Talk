@@ -8,7 +8,7 @@ import RecordVideoScreen from './screens/RecordVideoScreen'
 const App = StackNavigator({
   Home:{screen:HomeScreen},
   Edit:{screen:EditScreen},
-  RecordVideo:{screen:RecordVideoScreen},
+  Record:{screen:RecordVideoScreen},
 });
 
 export default App;
