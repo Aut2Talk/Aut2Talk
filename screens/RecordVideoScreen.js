@@ -9,29 +9,58 @@ export default class RecordVideoScreen extends Component {
 
     constructor(props) {
         super(props);
-        
+        this.state = {
+          isRecording: false,
+          useFrontCamera: false,
+        }
     }
-
     takePicture() {
+      this.setState({isRecording : true, });
+      console.log('picture taken');
       const options = {};
       //options.location = ...
-      this.camera.capture({metadata: options})
-        .then((data) => console.log(data))
+      this.camera.capture({ metadata: options })
+        .then((data) =>
+        { 
+          console.log('DATA:' + data) 
+        }
+      )
         .catch(err => console.error(err));
     }
+  
+    stop() {
+      this.setState({isRecording : false, });
+      this.camera.stopCapture();
+    }
 
-
+    toggleCamera() {
+      this.setState( {
+        useFrontCamera: !this.state.useFrontCamera,
+      });
+    }
     render() {
       const { navigate } = this.props.navigation;
       return (
         <View style={styles.container}>
           <Camera
-            ref={(cam) => {
-              this.camera = cam;
-            }}
-            style={styles.preview}
-            aspect={Camera.constants.Aspect.fill}>
-            <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+          ref={(cam) => {
+            this.camera = cam;
+          }}
+          style={styles.preview}
+          aspect={Camera.constants.Aspect.fill}
+          captureMode={Camera.constants.CaptureMode.video}
+          type={this.state.useFrontCamera ? 
+            Camera.constants.Type.front : Camera.constants.Type.back}
+        >
+        <Text style={styles.capture} onPress={this.toggleCamera.bind(this)} >
+          {this.state.useFrontCamera ? 'back camera': 'front camera'}
+        </Text>
+            <Text 
+              style={styles.capture}
+              onPress={this.state.isRecording? this.stop.bind(this) : this.takePicture.bind(this)}
+              >
+                {this.state.isRecording ? 'stop' : 'start'}
+              </Text>
           </Camera>
         </View>
       );
