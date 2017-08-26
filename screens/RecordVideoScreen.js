@@ -31,6 +31,11 @@ export default class RecordVideoScreen extends Component {
     stop() {
       this.setState({isRecording : false, });
       this.camera.stopCapture();
+      setTimeout(
+        () => {
+          const { navigate } = this.props.navigation;
+          navigate('Edit');
+    }, 2000);
     }
 
     toggleCamera() {
