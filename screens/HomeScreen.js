@@ -2,37 +2,39 @@ import React, {
   Component,
 } from 'react'
 import {
-  ScrollView,
+  Alert,
   StyleSheet,
+  ScrollView,
   View,
   Image,
   Text,
-  TouchableHighlight,
-  Alert,
+  TouchableHighlight
 } from 'react-native'
  
 import SudokuGrid from 'react-native-smart-sudoku-grid'
-import { StackNavigator} from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
+
+import {scale, verticalScale, moderateScale} from './Scale'
 
 
-import image_cash from './img/BlueIcon.png'
+import bgPic from './img/BlueIcon.png'
 
 const dataList = [
   {
-    icon: image_cash,
-    title: 'cash',
+    text: 'happy',
+    emoji: '😄',
   },
   {
-    icon: image_cash,
-    title: 'credit',
+    text: 'cute',
+    emoji: '😊',
   },
   {
-    icon: image_cash,
-    title: 'cash',
+    text: 'love',
+    emoji: '😍',
   },
   {
-    icon: image_cash,
-    title: 'credit',
+    text: 'confused',
+    emoji: '😣',
   },
 ]
  
@@ -81,15 +83,17 @@ export default class HomeScreen extends Component {
         return (
             <TouchableHighlight style={gridStyles.button} underlayColor={'#eee'} onPress={ this._onPressCell.bind(this, data) } >
                 <View style={gridStyles.buttonView}>
-                  <Image style = {gridStyles.buttonImage} source={data.icon} /> 
-                  <Text style = {gridStyles.buttonText} >{data.title}</Text>
+                  <Image style = {gridStyles.buttonImage} source={bgPic} >
+                    <Text style = {gridStyles.buttonEmoji}>{data.emoji}</Text>
+                  </Image>
+                  <Text style = {gridStyles.buttonText} >{data.text}</Text>
                 </View>
             </TouchableHighlight>
         )
     }
  
     _onPressCell (data) {
-        Alert.alert('clicked ' + data.title)
+        Alert.alert('clicked ' + data.text)
     }
 
     _onPressAdd() {
@@ -135,10 +139,16 @@ const gridStyles = StyleSheet.create({
 
   buttonImage:{
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     aspectRatio: 1,
     resizeMode : 'contain',
     // backgroundColor: 'blue',
+  },
+
+  buttonEmoji:{
+    fontSize:scale(50),
   },
 
   buttonText:{
