@@ -1,22 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Explore
- @beaesguerra
- Sign out
- Watch 3,154
-  Star 52,642
-  Fork 12,347 facebook/react-native
- Code  Issues 552  Pull requests 248  Projects 9  Wiki Insights 
-Branch: master Find file Copy pathreact-native/.gitignore
-56d4595  on Jul 18
-@hramos hramos Adds Danger support
-14 contributors @mkonicek @janicduplessis @vjeux @bestander @sahrens @nihgwu @lacker @ide @ianlevesque @hramos @enaqx @eddiemonge @spicyj @frantic
-RawBlameHistory     
-61 lines (53 sloc)  866 Bytes
 # Xcode
 !**/*.xcodeproj
 !**/*.pbxproj
@@ -77,6 +58,7 @@ node_modules
 
 /coverage
 /third-party
+<<<<<<< HEAD
 © 2017 GitHub, Inc.
 Terms
 Privacy
@@ -89,3 +71,7 @@ Training
 Shop
 Blog
 About
+=======
+.expo/
+npm-debug.*
+>>>>>>> master
