@@ -6,16 +6,11 @@ export default class EditScreen extends Component {
       title: 'Add',
     };
 
-    _onPressButton (data) {
-        Alert.alert('clicked button')
-    }
-
     constructor(props) {
         super(props);
         this.state = {
           Text_1: "Please enter emotion/activity:",
-          Text_2: "Please choose an image:",
-          Text_3: "Please take a video:",
+          Text_2: "Please choose an emoji to describe it:",
           title: '',
           emoji: '',
         }
@@ -51,8 +46,8 @@ export default class EditScreen extends Component {
           />
           <View style={styles.button}>
             <Button
-              onPress = {this._onPressButton}
-              title = "Enter"
+              onPress={() => navigate('Home')}
+              title = "Confirm"
             />
           </View>
 
