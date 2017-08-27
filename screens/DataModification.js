@@ -67,7 +67,7 @@ export default class Backend {
         console.log('save');
         const dataStructure = Backend.userData;
         const dataInJSON = JSON.stringify(dataStructure);
-        Alert.alert(dataInJSON);
+        //Alert.alert(dataInJSON);
         try {
             await AsyncStorage.setItem('@saveData', dataInJSON);
         } catch (error) {

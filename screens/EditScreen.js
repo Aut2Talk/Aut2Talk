@@ -25,19 +25,7 @@ export default class EditScreen extends Component {
       const { params } = this.props.navigation.state;
 
       return (
-        <View style = {styles.container}>
-          <Video
-            source={{uri: params.videoPath}}   // Can be a URL or a local file.
-            // Store reference
-            rate={1.0}
-            resizeMode="contain"                       // 0 is paused, 1 is normal.
-            volume={1.0}                            // 0 is muted, 1 is normal.
-            muted={false}                           // Mutes the audio entirely.
-            paused={false}                          // Pauses playback entirely.
-            repeat={true}                           // Repeat forever.
-            playInBackground={false}                // Audio continues to play when app entering background.
-            style={styles.backgroundVideo}
-          />
+        <ScrollView style = {styles.container}>
           <Text style = {styles.baseText}>Please enter emotion/activity:</Text>
 
           <TextInput
@@ -56,6 +44,19 @@ export default class EditScreen extends Component {
             onChangeText={(emoji) => this.setState({emoji})}
           />
 
+          <Video
+            source={{uri: params.videoPath}}   // Can be a URL or a local file.
+            // Store reference
+            rate={1.0}
+            resizeMode="cover"                       
+            volume={1.0}                            // 0 is muted, 1 is normal.
+            muted={false}                           // Mutes the audio entirely.
+            paused={false}                          // Pauses playback entirely.
+            repeat={true}                           // Repeat forever.
+            playInBackground={false}                // Audio continues to play when app entering background.
+            style={styles.backgroundVideo}
+          />
+
           <View style={styles.button}>
             <Button
               onPress={
@@ -70,7 +71,7 @@ export default class EditScreen extends Component {
             />
           </View>
 
-        </View>
+        </ScrollView>
       );
     }
 
@@ -84,15 +85,16 @@ const styles = StyleSheet.create({
   },
 
   backgroundVideo: {
-    flex:1,
+    aspectRatio:1,
     width:'100%',
     backgroundColor: '#E9E9EF',
+    marginVertical:5,
   },
 
 
   baseText: {
-    marginTop:15,
-    marginBottom:8,
+    marginTop:12,
+    marginBottom:6,
     marginHorizontal:8,
     fontSize: 16,
     color: '#444',
@@ -119,7 +121,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,//StyleSheet.hairlineWidth, 
     borderColor: '#ddd',
 
-    marginTop:20,
     paddingLeft:10,
     backgroundColor: '#ffffff' 
   },
