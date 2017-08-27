@@ -60,6 +60,7 @@ export default class RecordVideoScreen extends Component {
           ref={(cam) => {
             this.camera = cam;
           }}
+          captureAudio={true}
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}
           captureMode={Camera.constants.CaptureMode.video}

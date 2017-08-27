@@ -56,7 +56,7 @@ export default class HomeScreen extends Component {
         </ScrollView>
 
         <Image style={toolbarStyles.toolbar} source={require('./img/Toolbar.png')}>
-          <View style={{flex:1}}></View>
+          {/* <View style={{flex:1}}></View> */}
           <View style={{flex:1}}>
             <TouchableHighlight onPress={() => navigate('Record')} style={toolbarStyles.toolbarButton} underlayColor="white">
               <Image style={toolbarStyles.toolbarButtonImage} source={require('./img/Add.png')} />
