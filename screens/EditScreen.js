@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Text, StyleSheet, View, TextInput, Button, Alert, ScrollView } from 'react-native';
 import Video from 'react-native-video';
+import Backend from './DataModification';
 
 export default class EditScreen extends Component {
     static navigationOption = {
@@ -10,22 +11,24 @@ export default class EditScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          Text_1: "Please enter emotion/activity:",
-          Text_2: "Please choose an emoji to describe it:",
-          title: '',
+          text: '',
           emoji: '',
+          videoPath: this.props.navigation.state.videoPath
         }
+    }
+
+    buttonHandler = () => {
+      console.log(Backend.emojiStringToEncodedEmoji(this.state.text.toString()));
     }
 
     render() {
       const { navigate } = this.props.navigation;
-      const { params } = this.props.navigation.state;
-      console.log('Godness');
-      console.log(params);
+      //const { params } = this.props.navigation.state;
+
       return (
         <View style = {styles.container}>
           <Video
-            source={{uri: params.videoPath}}   // Can be a URL or a local file.
+            source={this.state.videoPath}//{uri: params.videoPath}}   // Can be a URL or a local file.
             // Store reference
             rate={1.0}
             resizeMode="contain"                       // 0 is paused, 1 is normal.
@@ -36,7 +39,7 @@ export default class EditScreen extends Component {
             playInBackground={false}                // Audio continues to play when app entering background.
             style={styles.backgroundVideo}
           />
-          <Text style = {styles.baseText}>{this.state.Text_1}</Text>
+          <Text style = {styles.baseText}>Please enter emotion/activity:</Text>
 
           <TextInput
             style={styles.textInput}
@@ -44,7 +47,7 @@ export default class EditScreen extends Component {
             onChangeText={(title) => this.setState({title})}
           />
           
-          <Text style = {styles.baseText}>{this.state.Text_2}</Text>
+          <Text style = {styles.baseText}>Please choose an emoji to describe it:</Text>
 
           <TextInput
             style={styles.textInput}
@@ -54,7 +57,7 @@ export default class EditScreen extends Component {
 
           <View style={styles.button}>
             <Button
-              onPress={() => navigate('Home')}
+              onPress={() => { navigate('Home'); Backend.appendData(this.state.emoji,this.state.videoPath,this.state.text);} }
               title = "Confirm"
             />
           </View>

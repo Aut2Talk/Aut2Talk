@@ -63,6 +63,7 @@ export default class RecordVideoScreen extends Component {
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}
           captureMode={Camera.constants.CaptureMode.video}
+          captureTarget={Camera.constants.CaptureTarget.disk}
           type={this.state.useFrontCamera ? 
                 Camera.constants.Type.front : Camera.constants.Type.back}
         >

@@ -15,10 +15,11 @@ export default class PlayVideoScreen extends Component {
 
     render() {
       const { navigate } = this.props.navigation;
+      const { params } = this.props.navigation.state;
       return (
         <View style = {styles.container}>
           <Video
-            source={require('../myVideo.mp4')}   // Can be a URL or a local file.
+            source={{uri: params.videoPath}}   // Can be a URL or a local file.
             // Store reference
             rate={1.0}
             resizeMode="contain"                       // 0 is paused, 1 is normal.
@@ -34,7 +35,6 @@ export default class PlayVideoScreen extends Component {
     }
 
 }
-
 
 const styles = StyleSheet.create({
   container:{

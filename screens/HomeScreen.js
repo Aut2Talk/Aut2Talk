@@ -10,6 +10,8 @@ import {
   Text,
   TouchableHighlight
 } from 'react-native'
+
+import Backend from './DataModification';
  
 import SudokuGrid from 'react-native-smart-sudoku-grid'
 import { StackNavigator } from 'react-navigation';
@@ -18,25 +20,6 @@ import {scale, verticalScale, moderateScale} from './Scale'
 
 
 import bgPic from './img/BlueIcon.png'
-
-const dataList = [
-  {
-    text: 'happy',
-    emoji: '😄',
-  },
-  {
-    text: 'cute',
-    emoji: '😊',
-  },
-  {
-    text: 'love',
-    emoji: '😍',
-  },
-  {
-    text: 'confused',
-    emoji: '😣',
-  },
-]
  
 const columnCount = 3
  
@@ -45,7 +28,12 @@ export default class HomeScreen extends Component {
     static navigationOptions = {
       title: 'Aut2Talk',
     };
- 
+
+    constructor(props){
+      super(props);
+      //Backend.load();
+    }
+
     render () {
         const { navigate } = this.props.navigation;
         
@@ -56,13 +44,13 @@ export default class HomeScreen extends Component {
                 <SudokuGrid
                     containerStyle={{}}
                     columnCount={columnCount}
-                    dataSource={dataList}
+                    dataSource={Backend.userData}
                     renderCell={this._renderGridCell}
                 />
             </ScrollView>
 
             <Image style={toolbarStyles.toolbar} source={require('./img/Toolbar.png')}>
-              <TouchableHighlight onPress={() => navigate('Edit')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Edit.png')} /> 
               </TouchableHighlight>
               
@@ -70,7 +58,7 @@ export default class HomeScreen extends Component {
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Add.png')} /> 
               </TouchableHighlight>
 
-              <TouchableHighlight onPress={() => navigate('Edit')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Delete.png')} />  
               </TouchableHighlight> 
              </Image>
@@ -82,7 +70,7 @@ export default class HomeScreen extends Component {
     _renderGridCell = (data, index, list) => {
         const { navigate } = this.props.navigation;
         return (
-            <TouchableHighlight style={gridStyles.button} underlayColor={'#eee'} onPress={() => navigate('Play',{ text:data.text, emoji:data.emoji} )} >
+            <TouchableHighlight style={gridStyles.button} underlayColor={'#eee'} onPress={() => navigate('Play',{ text:data.text, emoji:data.emoji, videoPath:data.videoPath} )} >
                 <View style={gridStyles.buttonView}>
                   <Image style = {gridStyles.buttonImage} source={bgPic} >
                     <Text style = {gridStyles.buttonEmoji}>{data.emoji}</Text>
