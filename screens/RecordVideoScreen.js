@@ -32,7 +32,10 @@ export default class RecordVideoScreen extends Component {
       this.camera.capture({ metadata: options })
         .then((data) =>
         { 
-          console.log('DATA:' + data) 
+          //console.log('DATA:');
+          //console.log(data.path); 
+          const { navigate } = this.props.navigation;
+          navigate('Edit', {videoPath : data.path} );
         }
       )
         .catch(err => console.error(err));
@@ -41,11 +44,6 @@ export default class RecordVideoScreen extends Component {
   stop() {
       this.setState({isRecording : false, });
       this.camera.stopCapture();
-      setTimeout(
-        () => {
-          const { navigate } = this.props.navigation;
-          navigate('Edit');
-      }, 2000);
   }
 
   toggleCamera() {

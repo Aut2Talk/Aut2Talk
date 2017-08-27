@@ -62,7 +62,7 @@ export default class HomeScreen extends Component {
             </ScrollView>
 
             <Image style={toolbarStyles.toolbar} source={require('./img/Toolbar.png')}>
-              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={() => navigate('Edit')} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Edit.png')} /> 
               </TouchableHighlight>
               
@@ -70,7 +70,7 @@ export default class HomeScreen extends Component {
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Add.png')} /> 
               </TouchableHighlight>
 
-              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={() => navigate('Edit')} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Delete.png')} />  
               </TouchableHighlight> 
              </Image>
@@ -80,8 +80,9 @@ export default class HomeScreen extends Component {
     }
  
     _renderGridCell = (data, index, list) => {
+        const { navigate } = this.props.navigation;
         return (
-            <TouchableHighlight style={gridStyles.button} underlayColor={'#eee'} onPress={ this._onPressCell.bind(this, data) } >
+            <TouchableHighlight style={gridStyles.button} underlayColor={'#eee'} onPress={() => navigate('Play',{ text:data.text, emoji:data.emoji} )} >
                 <View style={gridStyles.buttonView}>
                   <Image style = {gridStyles.buttonImage} source={bgPic} >
                     <Text style = {gridStyles.buttonEmoji}>{data.emoji}</Text>
@@ -90,12 +91,7 @@ export default class HomeScreen extends Component {
                 </View>
             </TouchableHighlight>
         )
-    }
- 
-    _onPressCell (data) {
-        Alert.alert('clicked ' + data.text)
-    }
- 
+    } 
 }
 
 
