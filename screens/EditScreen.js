@@ -21,7 +21,7 @@ export default class EditScreen extends Component {
       const { params } = this.props.navigation.state;
 
       return (
-        <ScrollView style = {styles.container}>
+        <View style = {styles.container}>
           <Text style = {styles.baseText}>Please enter emotion/activity:</Text>
 
           <TextInput
@@ -67,7 +67,7 @@ export default class EditScreen extends Component {
             />
           </View>
 
-        </ScrollView>
+        </View>
       );
     }
 
@@ -81,10 +81,10 @@ const styles = StyleSheet.create({
   },
 
   backgroundVideo: {
-    aspectRatio:1,
+    flex:1,
     width:'100%',
     backgroundColor: '#E9E9EF',
-    marginVertical:5,
+    marginTop:5,
   },
 
 
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,//StyleSheet.hairlineWidth, 
     borderColor: '#ddd',
 
+    marginVertical:5,
     paddingLeft:10,
     backgroundColor: '#ffffff' 
   },
