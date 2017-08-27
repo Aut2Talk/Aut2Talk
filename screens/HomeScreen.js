@@ -1,6 +1,6 @@
 import React, {
   Component,
-} from 'react'
+} from 'react';
 import {
   Alert,
   StyleSheet,
@@ -9,17 +9,18 @@ import {
   Image,
   Text,
   TouchableHighlight
-} from 'react-native'
+} from 'react-native';
 
 import Backend from './DataModification';
  
-import SudokuGrid from 'react-native-smart-sudoku-grid'
+import SudokuGrid from 'react-native-smart-sudoku-grid';
 import { StackNavigator } from 'react-navigation';
 
-import {scale, verticalScale, moderateScale} from './Scale'
+import {scale, verticalScale, moderateScale} from './Scale';
 
 
-import bgPic from './img/BlueIcon.png'
+import bgPic from './img/BlueIcon.png';
+import redBgPic from './img/IconRed.png';
  
 const columnCount = 3
  
@@ -33,6 +34,7 @@ export default class HomeScreen extends Component {
       super(props);
       this.state = {
         list: [],
+        useDeleteMode: false,
       };
       Backend.load().then(() => {this.setState({list: Backend.userData});});
     }
@@ -62,7 +64,7 @@ export default class HomeScreen extends Component {
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Add.png')} /> 
               </TouchableHighlight>
 
-              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={this._toggleDeleteMode} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Delete.png')} />  
               </TouchableHighlight> 
              </Image>
@@ -71,13 +73,25 @@ export default class HomeScreen extends Component {
         )
     }
  
+    _toggleDeleteMode = () => {
+      this.setState({ useDeleteMode: !this.state.useDeleteMode });
+    }
     _renderGridCell = (data, index, list) => {
         const { navigate } = this.props.navigation;
         console.log(data);
         return (
-            <TouchableHighlight style={gridStyles.button} underlayColor={'#eee'} onPress={() => navigate('Play',{ text:data.text, emoji:data.emoji, videoPath:data.videoPath} )} >
+            <TouchableHighlight 
+              style={gridStyles.button} 
+              underlayColor={'#eee'} 
+              onPress={ () => { 
+                if (this.state.useDeleteMode) {
+                  Backend.delete(index);
+                  this.setState({list: Backend.userData });
+                } else {
+                  navigate('Play',{ text:data.text, emoji:data.emoji, videoPath:data.videoPath} );
+                } } }>
                 <View style={gridStyles.buttonView}>
-                  <Image style = {gridStyles.buttonImage} source={bgPic} >
+                  <Image style = {gridStyles.buttonImage} source={this.state.useDeleteMode ? redBgPic : bgPic} >
                     <Text style = {gridStyles.buttonEmoji}>{data.emoji}</Text>
                   </Image>
                   <Text style = {gridStyles.buttonText} >{data.text}</Text>

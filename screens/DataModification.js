@@ -99,4 +99,9 @@ export default class Backend {
         }
         return null;
     }
+
+    static delete = (index) => {
+        Backend.userData.splice(index, 1);
+        Backend.save();
+    }
 }
