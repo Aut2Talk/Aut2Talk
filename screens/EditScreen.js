@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Text, StyleSheet, View, TextInput, Button, Alert, ScrollView } from 'react-native';
 import Video from 'react-native-video';
 import Backend from './DataModification';
+import { NavigationActions } from 'react-navigation';
 
 export default class EditScreen extends Component {
     static navigationOption = {
@@ -22,11 +23,9 @@ export default class EditScreen extends Component {
       const { params } = this.props.navigation.state;
 
       return (
-        <View >
-          <View style = {styles.container}>
-          <ScrollView 
+          <ScrollView
             scrollEnabled={false}
-            contentContainerStyle={styles.main}
+            contentContainerStyle={styles.container}
           >
             <Text style = {styles.baseText}>Please enter emotion/activity:</Text>
             <TextInput
@@ -42,36 +41,39 @@ export default class EditScreen extends Component {
               placeholder="Emoji"
               onChangeText={(emoji) => this.setState({emoji})}
             />
-          </ScrollView>
-          </View>
-          <Video
-            source={{uri: params.videoPath}}   // Can be a URL or a local file.
-            rate={1.0}
-            resizeMode="cover"                       
-            volume={1.0}                            // 0 is muted, 1 is normal.
-            muted={false}                           // Mutes the audio entirely.
-            paused={this.state.paused}                          // Pauses playback entirely.
-            repeat={true}                           // Repeat forever.
-            playInBackground={false}                // Audio continues to play when app entering background.
-            style={styles.backgroundVideo}
-          />
 
-          <View style={styles.button}>
-            <Button
-              onPress={
-                () => {
-                   console.log(this.state);
-                   this.setState({paused: true});
-                   Backend.appendData(this.state.emoji,params.videoPath,this.state.text);
-                   
-                   navigate('Home'); 
-                   
-                   } }
-              title = "Confirm"
+            <Video
+              source={{uri: params.videoPath}}   // Can be a URL or a local file.
+              rate={1.0}
+              resizeMode="cover"                       
+              volume={1.0}                            // 0 is muted, 1 is normal.
+              muted={false}                           // Mutes the audio entirely.
+              paused={this.state.paused}                          // Pauses playback entirely.
+              repeat={true}                           // Repeat forever.
+              playInBackground={false}                // Audio continues to play when app entering background.
+              style={styles.backgroundVideo}
             />
-          </View>
 
-        </View>
+            <View style={styles.button}>
+              <Button
+                onPress={
+                  () => {
+                    console.log(this.state);
+                    this.setState({paused: true});
+                    Backend.appendData(this.state.emoji,params.videoPath,this.state.text);
+                    
+                    this.props.navigation.dispatch(NavigationActions.reset({
+                      index: 0,
+                      actions: [
+                        NavigationActions.navigate({ routeName: 'Home' })
+                      ]
+                    }))
+                  }
+                }
+                title = "Confirm"
+              />
+            </View>
+          </ScrollView>
       );
     }
 
