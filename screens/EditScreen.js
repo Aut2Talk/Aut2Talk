@@ -22,12 +22,14 @@ export default class EditScreen extends Component {
       const { params } = this.props.navigation.state;
 
       return (
-        <View style = {styles.container}>
-          <Text style = {styles.baseText}>Please enter emotion/activity:</Text>
+        <View >
+          
           <ScrollView 
+            style = {styles.container}
             scrollEnabled={false}
             contentContainerStyle={styles.main}
           >
+            <Text style = {styles.baseText}>Please enter emotion/activity:</Text>
             <TextInput
               style={styles.textInput}
               placeholder="Emotion/Activity Name"
@@ -35,13 +37,7 @@ export default class EditScreen extends Component {
                 this.setState({text: title});
                 }}
             />
-          </ScrollView>
-          <Text style = {styles.baseText}>Please choose an emoji to describe it:</Text>
-
-          <ScrollView 
-            scrollEnabled={false}
-            contentContainerStyle={styles.main}
-          >
+            <Text style = {styles.baseText}>Please choose an emoji to describe it:</Text>
             <TextInput
               style={styles.textInput}
               placeholder="Emoji"
