@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, StyleSheet, View, TextInput, Button, Alert } from 'react-native';
+import {Text, StyleSheet, View, TextInput, Button, Alert, ScrollView } from 'react-native';
 import Video from 'react-native-video';
 
 export default class EditScreen extends Component {
@@ -19,10 +19,13 @@ export default class EditScreen extends Component {
 
     render() {
       const { navigate } = this.props.navigation;
+      const { params } = this.props.navigation.state;
+      console.log('Godness');
+      console.log(params);
       return (
         <View style = {styles.container}>
           <Video
-            source={require('../myVideo.mp4')}   // Can be a URL or a local file.
+            source={{uri: params.videoPath}}   // Can be a URL or a local file.
             // Store reference
             rate={1.0}
             resizeMode="contain"                       // 0 is paused, 1 is normal.
@@ -49,14 +52,6 @@ export default class EditScreen extends Component {
             onChangeText={(emoji) => this.setState({emoji})}
           />
 
-
-          <Text style = {styles.baseText}>{this.state.Text_3}</Text>
-
-          <TextInput
-            style={styles.textInput}
-            placeholder="Video"
-            onChangeText={(video) => this.setState({video})}
-          />
           <View style={styles.button}>
             <Button
               onPress={() => navigate('Home')}
@@ -74,7 +69,15 @@ export default class EditScreen extends Component {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
+    flexDirection:'column',
   },
+
+  backgroundVideo: {
+    flex:1,
+    width:'100%',
+    backgroundColor: '#E9E9EF',
+  },
+
 
   baseText: {
     marginTop:15,
@@ -109,13 +112,4 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     backgroundColor: '#ffffff' 
   },
-
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
-
 });
