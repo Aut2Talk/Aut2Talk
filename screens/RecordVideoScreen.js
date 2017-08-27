@@ -32,8 +32,8 @@ export default class RecordVideoScreen extends Component {
       this.camera.capture({ metadata: options })
         .then((data) =>
         { 
-          //console.log('DATA:');
-          //console.log(data.path); 
+          console.log('DATA:');
+          console.log(data.path); 
           const { navigate } = this.props.navigation;
           navigate('Edit', {videoPath : data.path} );
         }
@@ -67,7 +67,7 @@ export default class RecordVideoScreen extends Component {
           type={this.state.useFrontCamera ? 
                 Camera.constants.Type.front : Camera.constants.Type.back}
         >
-
+          <Text> </Text>
           <Image 
                 style = {camBarStyles.barImage} 
                 source={require('./img/CamBarBottom.png')} 

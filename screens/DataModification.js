@@ -3,13 +3,7 @@ import { StyleSheet, Text, View, Button, Alert, AsyncStorage, TextInput } from '
 DEBUG_MESSAGE = "\nIf you see this message in production, please contact the development team.";
 
 export default class Backend {
-    static userData =[
-    {
-        text: 'happy',
-        emoji: '😄',
-        videoPath: '../myVideo.mp4'
-    }
-    ];
+    static userData =[];
 
     static Aut2TalkError = (message) => {
         Alert.alert(message);
@@ -70,6 +64,7 @@ export default class Backend {
     * This saves the values stored in the data
     */
     static save = async () => {
+        console.log('save');
         const dataStructure = Backend.userData;
         const dataInJSON = JSON.stringify(dataStructure);
         Alert.alert(dataInJSON);
@@ -87,6 +82,7 @@ export default class Backend {
     */
     static load = async () => {
         try {
+            console.log('load');
             const dataInJSON = await AsyncStorage.getItem('@saveData');
             if (dataInJSON !== null){
             const dataStructure = JSON.parse(dataInJSON);

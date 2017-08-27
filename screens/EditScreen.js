@@ -12,9 +12,8 @@ export default class EditScreen extends Component {
         super(props);
         this.state = {
           text: '',
-          emoji: '',
-          videoPath: this.props.navigation.state.videoPath
-        }
+          emoji: ''
+        };
     }
 
     buttonHandler = () => {
@@ -23,12 +22,12 @@ export default class EditScreen extends Component {
 
     render() {
       const { navigate } = this.props.navigation;
-      //const { params } = this.props.navigation.state;
+      const { params } = this.props.navigation.state;
 
       return (
         <View style = {styles.container}>
           <Video
-            source={this.state.videoPath}//{uri: params.videoPath}}   // Can be a URL or a local file.
+            source={{uri: params.videoPath}}   // Can be a URL or a local file.
             // Store reference
             rate={1.0}
             resizeMode="contain"                       // 0 is paused, 1 is normal.
@@ -44,7 +43,9 @@ export default class EditScreen extends Component {
           <TextInput
             style={styles.textInput}
             placeholder="Emotion/Activity Name"
-            onChangeText={(title) => this.setState({title})}
+            onChangeText={(title) => {
+              this.setState({text: title});
+              }}
           />
           
           <Text style = {styles.baseText}>Please choose an emoji to describe it:</Text>
@@ -57,7 +58,14 @@ export default class EditScreen extends Component {
 
           <View style={styles.button}>
             <Button
-              onPress={() => { navigate('Home'); Backend.appendData(this.state.emoji,this.state.videoPath,this.state.text);} }
+              onPress={
+                () => {
+                   console.log(this.state);
+                   Backend.appendData(this.state.emoji,params.videoPath,this.state.text);
+                   
+                   navigate('Home'); 
+                   
+                   } }
               title = "Confirm"
             />
           </View>

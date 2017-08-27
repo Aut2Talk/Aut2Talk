@@ -31,10 +31,14 @@ export default class HomeScreen extends Component {
 
     constructor(props){
       super(props);
-      //Backend.load();
+      this.state = {
+        list: [],
+      };
+      Backend.load().then(() => {this.setState({list: Backend.userData});});
     }
 
     render () {
+
         const { navigate } = this.props.navigation;
         
         return (
@@ -44,7 +48,7 @@ export default class HomeScreen extends Component {
                 <SudokuGrid
                     containerStyle={{}}
                     columnCount={columnCount}
-                    dataSource={Backend.userData}
+                    dataSource={this.state.list}
                     renderCell={this._renderGridCell}
                 />
             </ScrollView>
@@ -69,6 +73,7 @@ export default class HomeScreen extends Component {
  
     _renderGridCell = (data, index, list) => {
         const { navigate } = this.props.navigation;
+        console.log(data);
         return (
             <TouchableHighlight style={gridStyles.button} underlayColor={'#eee'} onPress={() => navigate('Play',{ text:data.text, emoji:data.emoji, videoPath:data.videoPath} )} >
                 <View style={gridStyles.buttonView}>
