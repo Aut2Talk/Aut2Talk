@@ -67,7 +67,7 @@ export default class Backend {
         console.log('save');
         const dataStructure = Backend.userData;
         const dataInJSON = JSON.stringify(dataStructure);
-        //Alert.alert(dataInJSON);
+    
         try {
             await AsyncStorage.setItem('@saveData', dataInJSON);
         } catch (error) {
@@ -98,5 +98,10 @@ export default class Backend {
             Alert.alert("Cannot Load Data");
         }
         return null;
+    }
+
+    static delete = (index) => {
+        Backend.userData.splice(index, 1);
+        Backend.save();
     }
 }

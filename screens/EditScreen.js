@@ -16,10 +16,6 @@ export default class EditScreen extends Component {
         };
     }
 
-    buttonHandler = () => {
-      console.log(Backend.emojiStringToEncodedEmoji(this.state.text.toString()));
-    }
-
     render() {
       const { navigate } = this.props.navigation;
       const { params } = this.props.navigation.state;

@@ -67,7 +67,7 @@ export default class RecordVideoScreen extends Component {
           type={this.state.useFrontCamera ? 
                 Camera.constants.Type.front : Camera.constants.Type.back}
         >
-          {/* <Text> </Text> */}
+          <Text style ={{display:'none'}}> </Text>
           <Image 
                 style = {camBarStyles.barImage} 
                 source={require('./img/CamBarBottom.png')} 
