@@ -62,7 +62,7 @@ export default class HomeScreen extends Component {
             </ScrollView>
 
             <Image style={toolbarStyles.toolbar} source={require('./img/Toolbar.png')}>
-              <TouchableHighlight onPress={() => navigate('Edit')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Edit.png')} /> 
               </TouchableHighlight>
               
@@ -70,7 +70,7 @@ export default class HomeScreen extends Component {
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Add.png')} /> 
               </TouchableHighlight>
 
-              <TouchableHighlight onPress={() => navigate('Edit')} style = {toolbarStyles.toolbarButton} underlayColor="white">
+              <TouchableHighlight onPress={() => navigate('Record')} style = {toolbarStyles.toolbarButton} underlayColor="white">
                 <Image style = {toolbarStyles.toolbarButtonImage} source={require('./img/Delete.png')} />  
               </TouchableHighlight> 
              </Image>
