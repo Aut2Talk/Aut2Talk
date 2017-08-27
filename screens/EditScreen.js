@@ -23,23 +23,31 @@ export default class EditScreen extends Component {
       return (
         <View style = {styles.container}>
           <Text style = {styles.baseText}>Please enter emotion/activity:</Text>
-
-          <TextInput
-            style={styles.textInput}
-            placeholder="Emotion/Activity Name"
-            onChangeText={(title) => {
-              this.setState({text: title});
-              }}
-          />
-          
+          <ScrollView 
+            scrollEnabled={false}
+            contentContainerStyle={styles.main}
+          >
+            <TextInput
+              style={styles.textInput}
+              placeholder="Emotion/Activity Name"
+              onChangeText={(title) => {
+                this.setState({text: title});
+                }}
+            />
+          </ScrollView>
           <Text style = {styles.baseText}>Please choose an emoji to describe it:</Text>
 
-          <TextInput
-            style={styles.textInput}
-            placeholder="Emoji"
-            onChangeText={(emoji) => this.setState({emoji})}
-          />
-
+          <ScrollView 
+            scrollEnabled={false}
+            contentContainerStyle={styles.main}
+          >
+            <TextInput
+              style={styles.textInput}
+              placeholder="Emoji"
+              onChangeText={(emoji) => this.setState({emoji})}
+            />
+          </ScrollView>
+          
           <Video
             source={{uri: params.videoPath}}   // Can be a URL or a local file.
             // Store reference
