@@ -20,7 +20,7 @@ import { scale, verticalScale, moderateScale } from './Scale';
 
 
 import bgPic from './img/BlueIcon.png';
-import redBgPic from './img/IconRed.png';
+import grayBgPic from './img/IconGray.png';
 
 const columnCount = 3
 
@@ -103,7 +103,7 @@ export default class HomeScreen extends Component {
           }
         }}>
         <View style={gridStyles.buttonView}>
-          <Image style={gridStyles.buttonImage} source={this.state.useDeleteMode ? redBgPic : bgPic} >
+          <Image style={gridStyles.buttonImage} source={this.state.useDeleteMode ? grayBgPic : bgPic} >
             <Text style={gridStyles.buttonEmoji}>{data.emoji}</Text>
           </Image>
           <Text style={gridStyles.buttonText} >{data.text}</Text>
