@@ -12,7 +12,8 @@ export default class EditScreen extends Component {
         super(props);
         this.state = {
           text: '',
-          emoji: ''
+          emoji: '',
+          paused: false,
         };
     }
 
@@ -50,12 +51,11 @@ export default class EditScreen extends Component {
           
           <Video
             source={{uri: params.videoPath}}   // Can be a URL or a local file.
-            // Store reference
             rate={1.0}
             resizeMode="cover"                       
             volume={1.0}                            // 0 is muted, 1 is normal.
             muted={false}                           // Mutes the audio entirely.
-            paused={false}                          // Pauses playback entirely.
+            paused={this.state.paused}                          // Pauses playback entirely.
             repeat={true}                           // Repeat forever.
             playInBackground={false}                // Audio continues to play when app entering background.
             style={styles.backgroundVideo}
@@ -66,6 +66,7 @@ export default class EditScreen extends Component {
               onPress={
                 () => {
                    console.log(this.state);
+                   this.setState({paused: true});
                    Backend.appendData(this.state.emoji,params.videoPath,this.state.text);
                    
                    navigate('Home'); 

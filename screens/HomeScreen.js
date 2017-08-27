@@ -74,7 +74,10 @@ export default class HomeScreen extends Component {
   }
 
   _toggleDeleteMode = () => {
-    this.setState({ useDeleteMode: !this.state.useDeleteMode });
+    // only toggle delete if list is not empty
+    if (this.state.list.length > 0) {
+      this.setState({ useDeleteMode: !this.state.useDeleteMode });
+    }
   }
   _renderGridCell = (data, index, list) => {
     const { navigate } = this.props.navigation;
