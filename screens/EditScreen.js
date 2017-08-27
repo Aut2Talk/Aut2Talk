@@ -23,9 +23,8 @@ export default class EditScreen extends Component {
 
       return (
         <View >
-          
+          <View style = {styles.container}>
           <ScrollView 
-            style = {styles.container}
             scrollEnabled={false}
             contentContainerStyle={styles.main}
           >
@@ -35,7 +34,7 @@ export default class EditScreen extends Component {
               placeholder="Emotion/Activity Name"
               onChangeText={(title) => {
                 this.setState({text: title});
-                }}
+              }}
             />
             <Text style = {styles.baseText}>Please choose an emoji to describe it:</Text>
             <TextInput
@@ -44,7 +43,7 @@ export default class EditScreen extends Component {
               onChangeText={(emoji) => this.setState({emoji})}
             />
           </ScrollView>
-          
+          </View>
           <Video
             source={{uri: params.videoPath}}   // Can be a URL or a local file.
             rate={1.0}
