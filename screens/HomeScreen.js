@@ -233,7 +233,7 @@ const gridStyles = StyleSheet.create({
   },
 
   buttonText: {
-    color: '#2196F3',
+    color: 'black',
     fontSize: 14,
     margin: 5,
     // backgroundColor: 'yellow',
