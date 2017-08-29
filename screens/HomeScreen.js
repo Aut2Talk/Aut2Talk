@@ -8,6 +8,7 @@ import {
   View,
   Image,
   Text,
+  Button,
   TouchableHighlight
 } from 'react-native';
 
@@ -21,6 +22,7 @@ import { scale, verticalScale, moderateScale } from './Scale';
 
 import bgPic from './img/BlueIcon.png';
 import grayBgPic from './img/IconGray.png';
+import orangeBgPic from './img/IconYellow.png';
 
 const columnCount = 3
 
@@ -35,6 +37,7 @@ export default class HomeScreen extends Component {
     this.state = {
       list: [],
       useDeleteMode: false,
+      useEditMode: false,
     };
     Backend.load().then(() => { this.setState({ list: Backend.userData }); });
   }
@@ -42,43 +45,104 @@ export default class HomeScreen extends Component {
   render() {
 
     const { navigate } = this.props.navigation;
+    
+    if(this.state.useEditMode){
+      return (
+        <View style={mainUIStyles.wholeScreen}>
+  
+          <ScrollView style={mainUIStyles.scrollView} showsVerticalScrollIndicator={false}>
+            <SudokuGrid
+              containerStyle={{}}
+              columnCount={columnCount}
+              dataSource={this.state.list}
+              renderCell={this._renderGridCell}
+            />
+          </ScrollView>
+  
+          <Image style={toolbarStyles.toolbarEditing} source={require('./img/Toolbar.png')}>
+            <View style={{marginLeft:10}}>
+              <Button
+                onPress={() => {this.setState({useEditMode:false});}} title = "Cancel" 
+              />
+            </View>
+          </Image>
+  
+        </View>
+      )
+    }
+    else if(this.state.useDeleteMode){
+      return (
+        <View style={mainUIStyles.wholeScreen}>
+  
+          <ScrollView style={mainUIStyles.scrollView} showsVerticalScrollIndicator={false}>
+            <SudokuGrid
+              containerStyle={{}}
+              columnCount={columnCount}
+              dataSource={this.state.list}
+              renderCell={this._renderGridCell}
+            />
+          </ScrollView>
+  
+          <Image style={toolbarStyles.toolbarDeleting} source={require('./img/Toolbar.png')}>
+            <View style={{marginRight:10}}>
+              <Button
+                onPress={() => {this.setState({useDeleteMode:false});}} title = "Cancel"
+              />
+            </View>
+          </Image>
+  
+        </View>
+      )
+    }
+    else{
+      return (
+        <View style={mainUIStyles.wholeScreen}>
+  
+          <ScrollView style={mainUIStyles.scrollView} showsVerticalScrollIndicator={false}>
+            <SudokuGrid
+              containerStyle={{}}
+              columnCount={columnCount}
+              dataSource={this.state.list}
+              renderCell={this._renderGridCell}
+            />
+          </ScrollView>
+  
+          <Image style={toolbarStyles.toolbar} source={require('./img/Toolbar.png')}>
+            <View style={{flex:1}}>
+              <TouchableHighlight onPress={this._toggleEditMode} style={toolbarStyles.toolbarButton} underlayColor="white">
+                <Image style={toolbarStyles.toolbarButtonImage} source={require('./img/Edit.png')} />
+              </TouchableHighlight>
+            </View>
+            <View style={{flex:1}}>
+              <TouchableHighlight onPress={() => navigate('Record')} style={toolbarStyles.toolbarButton} underlayColor="white">
+                <Image style={toolbarStyles.toolbarButtonImage} source={require('./img/Add.png')} />
+              </TouchableHighlight>
+            </View>
+            <View style={{flex:1}}>
+              <TouchableHighlight onPress={this._toggleDeleteMode} style={toolbarStyles.toolbarButton} underlayColor="white">
+                <Image style={toolbarStyles.toolbarButtonImage} source={require('./img/Delete.png')} />
+              </TouchableHighlight>
+            </View>
+          </Image>
+  
+        </View>
+      )
+    }
 
-    return (
-      <View style={mainUIStyles.wholeScreen}>
-
-        <ScrollView style={mainUIStyles.scrollView} showsVerticalScrollIndicator={false}>
-          <SudokuGrid
-            containerStyle={{}}
-            columnCount={columnCount}
-            dataSource={this.state.list}
-            renderCell={this._renderGridCell}
-          />
-        </ScrollView>
-
-        <Image style={toolbarStyles.toolbar} source={require('./img/Toolbar.png')}>
-          {/* <View style={{flex:1}}></View> */}
-          <View style={{flex:1}}>
-            <TouchableHighlight onPress={() => navigate('Record')} style={toolbarStyles.toolbarButton} underlayColor="white">
-              <Image style={toolbarStyles.toolbarButtonImage} source={require('./img/Add.png')} />
-            </TouchableHighlight>
-          </View>
-          <View style={{flex:1}}>
-            <TouchableHighlight onPress={this._toggleDeleteMode} style={toolbarStyles.toolbarButton} underlayColor="white">
-              <Image style={toolbarStyles.toolbarButtonImage} source={require('./img/Delete.png')} />
-            </TouchableHighlight>
-          </View>
-        </Image>
-
-      </View>
-    )
   }
-
   _toggleDeleteMode = () => {
     // only toggle delete if list is not empty
     if (this.state.list.length > 0) {
-      this.setState({ useDeleteMode: !this.state.useDeleteMode });
+      this.setState({ useDeleteMode: !this.state.useDeleteMode , useEditMode:false });
     }
   }
+
+  _toggleEditMode = () => {
+    if (this.state.list.length > 0) {
+      this.setState({ useEditMode: !this.state.useEditMode , useDeleteMode:false });
+    }
+  }
+
   _renderGridCell = (data, index, list) => {
     const { navigate } = this.props.navigation;
     return (
@@ -101,12 +165,15 @@ export default class HomeScreen extends Component {
                   }
                 }]);
 
-          } else {
+          } else if(this.state.useEditMode) {
+            useEditMode:false;
+            navigate('Edit', { isNewData: false, index: index, text: data.text, emoji: data.emoji, videoPath: data.videoPath });
+          } else{
             navigate('Play', { text: data.text, emoji: data.emoji, videoPath: data.videoPath });
           }
         }}>
         <View style={gridStyles.buttonView}>
-          <Image style={gridStyles.buttonImage} source={this.state.useDeleteMode ? grayBgPic : bgPic} >
+          <Image style={gridStyles.buttonImage} source={this.state.useDeleteMode ? grayBgPic : (this.state.useEditMode ? orangeBgPic : bgPic)} >
             <Text style={gridStyles.buttonEmoji}>{data.emoji}</Text>
           </Image>
           <Text style={gridStyles.buttonText} >{data.text}</Text>
@@ -182,6 +249,26 @@ const toolbarStyles = StyleSheet.create({
 
     flexDirection: 'row',
     justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+
+  toolbarEditing: {
+    flex: 0.082,
+    width: '100%',
+    resizeMode: 'stretch',
+
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+
+  toolbarDeleting: {
+    flex: 0.082,
+    width: '100%',
+    resizeMode: 'stretch',
+
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
 

@@ -104,4 +104,13 @@ export default class Backend {
         Backend.userData.splice(index, 1);
         Backend.save();
     }
+
+    static edit =(index,emoji,videoPath,text) => {
+        Backend.userData.splice(index, 1, {
+            emoji: emoji,
+            videoPath: videoPath,
+            text: text
+        });
+        Backend.save();
+    }
 }

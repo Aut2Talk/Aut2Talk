@@ -35,7 +35,7 @@ export default class RecordVideoScreen extends Component {
           console.log('DATA:');
           console.log(data.path); 
           const { navigate } = this.props.navigation;
-          navigate('Edit', {videoPath : data.path} );
+          navigate('Edit', {isNewData: true, text: '', emoji: '', videoPath : data.path} );
         }
       )
         .catch(err => console.error(err));
@@ -64,7 +64,7 @@ export default class RecordVideoScreen extends Component {
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}
           captureMode={Camera.constants.CaptureMode.video}
-          captureTarget={Camera.constants.CaptureTarget.disk}
+          captureTarget={Camera.constants.CaptureTarget.cameraRoll}
           type={this.state.useFrontCamera ? 
                 Camera.constants.Type.front : Camera.constants.Type.back}
         >

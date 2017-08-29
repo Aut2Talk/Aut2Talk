@@ -27,18 +27,18 @@ export default class EditScreen extends Component {
             scrollEnabled={false}
             contentContainerStyle={styles.container}
           >
-            <Text style = {styles.baseText}>Please enter emotion/activity:</Text>
+            <Text style = {styles.baseText}>Please enter Emotion/Activity Name:</Text>
             <TextInput
               style={styles.textInput}
-              placeholder="Emotion/Activity Name"
-              onChangeText={(title) => {
-                this.setState({text: title});
+              placeholder={params.isNewData ? 'Emotion/Activity Name' : params.text}
+              onChangeText={(text) => {
+                this.setState({text});
               }}
             />
             <Text style = {styles.baseText}>Please choose an emoji to describe it:</Text>
             <TextInput
               style={styles.textInput}
-              placeholder="Emoji"
+              placeholder={params.isNewData ? 'Emoji' : params.emoji}
               onChangeText={(emoji) => this.setState({emoji})}
             />
 
@@ -60,7 +60,14 @@ export default class EditScreen extends Component {
                   () => {
                     console.log(this.state);
                     this.setState({paused: true});
-                    Backend.appendData(this.state.emoji,params.videoPath,this.state.text);
+                    console.log('DataParams'+ params.isNewData + params.index + params.videoPath + this.state.text + this.state.emoji);
+
+                    if(params.isNewData){
+                      Backend.appendData(this.state.emoji,params.videoPath,this.state.text);
+                    }
+                    else{
+                      Backend.edit(params.index,this.state.emoji,params.videoPath,this.state.text);
+                    }
                     
                     this.props.navigation.dispatch(NavigationActions.reset({
                       index: 0,
