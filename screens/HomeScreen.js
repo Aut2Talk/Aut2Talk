@@ -62,7 +62,7 @@ export default class HomeScreen extends Component {
           <Image style={toolbarStyles.toolbarEditing} source={require('./img/Toolbar.png')}>
             <View style={{marginLeft:10}}>
               <Button
-                onPress={() => {this.setState({useEditMode:false});}} title = "Cancel" 
+                onPress={() => {this.setState({useEditMode:false});}} title = "Leave Edit Mode" color ='orange'
               />
             </View>
           </Image>
@@ -86,7 +86,7 @@ export default class HomeScreen extends Component {
           <Image style={toolbarStyles.toolbarDeleting} source={require('./img/Toolbar.png')}>
             <View style={{marginRight:10}}>
               <Button
-                onPress={() => {this.setState({useDeleteMode:false});}} title = "Cancel"
+                onPress={() => {this.setState({useDeleteMode:false});}} title = "Leave Delete Mode" color ='red'
               />
             </View>
           </Image>
