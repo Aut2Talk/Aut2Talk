@@ -62,7 +62,7 @@ export default class HomeScreen extends Component {
           <Image style={toolbarStyles.toolbarEditing} source={require('./img/Toolbar.png')}>
             <View style={{marginLeft:10}}>
               <Button
-                onPress={() => {this.setState({useEditMode:false});}} title = "Cancel" 
+                onPress={() => {this.setState({useEditMode:false});}} title = "Leave Edit Mode" color ='orange'
               />
             </View>
           </Image>
@@ -86,7 +86,7 @@ export default class HomeScreen extends Component {
           <Image style={toolbarStyles.toolbarDeleting} source={require('./img/Toolbar.png')}>
             <View style={{marginRight:10}}>
               <Button
-                onPress={() => {this.setState({useDeleteMode:false});}} title = "Cancel"
+                onPress={() => {this.setState({useDeleteMode:false});}} title = "Leave Delete Mode" color ='red'
               />
             </View>
           </Image>
@@ -166,7 +166,7 @@ export default class HomeScreen extends Component {
                 }]);
 
           } else if(this.state.useEditMode) {
-            useEditMode:false;
+            this.setState({useEditMode:false});
             navigate('Edit', { isNewData: false, index: index, text: data.text, emoji: data.emoji, videoPath: data.videoPath });
           } else{
             navigate('Play', { text: data.text, emoji: data.emoji, videoPath: data.videoPath });
@@ -233,7 +233,7 @@ const gridStyles = StyleSheet.create({
   },
 
   buttonText: {
-    color: '#2196F3',
+    color: 'black',
     fontSize: 14,
     margin: 5,
     // backgroundColor: 'yellow',
