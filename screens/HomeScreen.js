@@ -166,7 +166,7 @@ export default class HomeScreen extends Component {
                 }]);
 
           } else if(this.state.useEditMode) {
-            useEditMode:false;
+            this.setState({useEditMode:false});
             navigate('Edit', { isNewData: false, index: index, text: data.text, emoji: data.emoji, videoPath: data.videoPath });
           } else{
             navigate('Play', { text: data.text, emoji: data.emoji, videoPath: data.videoPath });
