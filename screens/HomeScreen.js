@@ -176,7 +176,7 @@ export default class HomeScreen extends Component {
           <Image style={gridStyles.buttonImage} source={this.state.useDeleteMode ? grayBgPic : (this.state.useEditMode ? orangeBgPic : bgPic)} >
             <Text style={gridStyles.buttonEmoji}>{data.emoji}</Text>
           </Image>
-          <Text style={gridStyles.buttonText} >{data.text}</Text>
+          <Text style={gridStyles.buttonText} numberOfLines={1} >{data.text}</Text>
         </View>
       </TouchableHighlight>
     )
@@ -235,8 +235,7 @@ const gridStyles = StyleSheet.create({
   buttonText: {
     color: 'black',
     fontSize: 14,
-    margin: 5,
-    // backgroundColor: 'yellow',
+    margin: 5
   }
 })
 
