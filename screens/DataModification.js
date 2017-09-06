@@ -107,9 +107,9 @@ export default class Backend {
 
     static edit =(index,emoji,videoPath,text) => {
         Backend.userData.splice(index, 1, {
-            emoji: emoji,
+            emoji: emoji.length > 0 ? emoji : Backend.userData[index].emoji,
             videoPath: videoPath,
-            text: text
+            text: text.length > 0 ? text : Backend.userData[index].text,
         });
         Backend.save();
     }
