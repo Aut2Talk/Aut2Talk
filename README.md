@@ -7,3 +7,10 @@ Aut2Talk was originally created for the TOM (Tikkun Olam Makers) 72-hour makeath
 
 
 <a href='https://play.google.com/store/apps/details?id=ca.masonbrothers.aut2talk&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img height=70px alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+
+## Setup Instructions
+1. Clone the project repository <br />
+&nbsp;`git clone https://github.com/beaesguerra/Aut2Talk.git`
+
+2. Follow set up instructions for running the React Native application on a mobile device <br />
+&nbsp;Official React Native set up instructions: https://facebook.github.io/react-native/docs/getting-started.html
